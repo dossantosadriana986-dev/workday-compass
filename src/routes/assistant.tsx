@@ -34,7 +34,9 @@ function Assistant() {
   const [err, setErr] = useState<{ error: string; setup?: boolean } | null>(null);
   const [copied, setCopied] = useState<number | null>(null);
   const end = useRef<HTMLDivElement>(null);
-  useEffect(() => end.current?.scrollIntoView({ behavior: "smooth" }), [msgs.length, busy]);
+  useEffect(() => {
+    end.current?.scrollIntoView({ behavior: "smooth" });
+  }, [msgs.length, busy]);
 
   async function send(text: string, history: Msg[]) {
     if (!text.trim() || busy) return;
