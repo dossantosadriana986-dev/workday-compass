@@ -52,7 +52,7 @@ export const runAI = createServerFn({ method: "POST" })
     return d;
   })
   .handler(async ({ data }): Promise<{ ok: true; text: string } | { ok: false; error: string; setup?: boolean }> => {
-    if (!process.env.LOVABLE_API_KEY) {
+    if (!process.env["LOVABLE_API_KEY"]) {
       return { ok: false, setup: true, error: "AI is not configured. Connect the Lovable AI gateway (LOVABLE_API_KEY) to enable AI features." };
     }
     const { generateResponse, GatewayError, PaymentRequiredError, RateLimitError } = await import("@lovable.dev/ai-gateway");
